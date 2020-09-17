@@ -70,23 +70,8 @@ There are `r nrow(penguins)` rows and `r ncol(penguins)` columns.
 The mean flipper length is 200.9mm. 
 
 
-
-
 ```{r}
-ggplot(prob2_df,
-        x = bill_length_mm,
-        y = flipper_length_mm)
-
-
-
-set.seed(1)
-
-plot_df = tibble(
-  x = rnorm(1000, sd = .5),
-  y = 1 + 2 * x + rnorm(1000)
-)
-
-ggplot(plot_df, aes(x = x)) + geom_histogram()
+ggplot (data = penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species))
 
 ```
 

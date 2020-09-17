@@ -51,6 +51,47 @@ as.numeric(as.factor(pull(prob1_df, samp_gt_0))) * (samp = rnorm(10))
 ```
 
 
+## Problem 2 
+
+```{r}
+data("penguins", package = "palmerpenguins")
+
+view(penguins)
+variable.names(penguins)
+
+summary(penguins$flipper_length_mm)
+
 ```
 
-## Problem 2 
+There are 334 penguin observations. Looking at penguin species, island, bill length, bill depth, flipper length, body mass, sex, and year. 
+
+There are `r nrow(penguins)` rows and `r ncol(penguins)` columns. 
+
+The mean flipper length is 200.9mm. 
+
+
+
+
+```{r}
+ggplot(prob2_df,
+        x = bill_length_mm,
+        y = flipper_length_mm)
+
+
+
+set.seed(1)
+
+plot_df = tibble(
+  x = rnorm(1000, sd = .5),
+  y = 1 + 2 * x + rnorm(1000)
+)
+
+ggplot(plot_df, aes(x = x)) + geom_histogram()
+
+```
+
+
+
+
+
+

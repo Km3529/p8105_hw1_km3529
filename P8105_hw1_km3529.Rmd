@@ -44,8 +44,10 @@ as.numeric(pull(prob1_df, factor_vec))
 I can take take the mean of logical and factor, but not character. This happens because logical is converted to 0 or 1. Factor is converted to 1, 2, or 3. However, character is not converted to numbers, which is why you cannot take the mean. 
 
 
-```{r}
-
+```{r, eval = FALSE} 
+as.numeric(pull(prob1_df, samp_gt_0)) * (samp = rnorm(10))
+as.factor(pull(prob1_df, samp_gt_0)) * (samp = rnorm(10))
+as.numeric(as.factor(pull(prob1_df, samp_gt_0))) * (samp = rnorm(10))
 ```
 
 

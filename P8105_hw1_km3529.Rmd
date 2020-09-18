@@ -12,7 +12,7 @@ library(tidyverse)
 
 ## Problem 1
 
-create a data frame with the specified element. 
+Create a data frame with the specified element. 
 
 ```{r}
 prob1_df =
@@ -35,14 +35,17 @@ mean(pull(prob1_df, factor_vec))
 
 I can take the mean of numbers and logical but not the mean of character or factor. 
 
+Convert to numeric.
+
 ```{r, eval = FALSE} 
 as.numeric(pull(prob1_df, samp_gt_0)) 
 as.numeric(pull(prob1_df, char_vec))
 as.numeric(pull(prob1_df, factor_vec))
 ```
 
-I can take take the mean of logical and factor, but not character. This happens because logical is converted to 0 or 1. Factor is converted to 1, 2, or 3. However, character is not converted to numbers, which is why you cannot take the mean. 
+I can take take the mean of logical and factor, but not character. Logical is converted to 0 or 1. Factor is converted to 1, 2, or 3. However, character is not converted to numbers, which  why you cannot take the mean. 
 
+Second chunk of code:
 
 ```{r, eval = FALSE} 
 as.numeric(pull(prob1_df, samp_gt_0)) * (samp = rnorm(10))
@@ -55,24 +58,13 @@ as.numeric(as.factor(pull(prob1_df, samp_gt_0))) * (samp = rnorm(10))
 
 ```{r}
 data("penguins", package = "palmerpenguins")
-
-view(penguins)
-variable.names(penguins)
-
-variable.names(penguins)
-
-
 ```
 
-There are `r nobs(penguins)` penguin observations. The data examines `r variable.names(penguins)`. 
-
+The penguins data set examines `r variable.names(penguins)`. 
 There are `r nrow(penguins)` rows and `r ncol(penguins)` columns. 
-
 The mean flipper length is `r mean(pull(penguins, flipper_length_mm), na.rm = TRUE)`. 
 
-
-Note to self: add title
-
+Make a scatterplot of flipper length vs bill length. 
 ```{r}
 ggplot (data = penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point() + ggtitle("Flipper Length and Bill Length by Species")
 

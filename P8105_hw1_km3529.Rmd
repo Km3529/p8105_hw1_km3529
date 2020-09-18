@@ -46,11 +46,11 @@ above. Since character could not be coerced to numbers, R could not take the mea
 
 #### Second Code Chunk
 ```{r } 
-#convert the logical vector to numeric, and multiply the random sample by the result
+#logical to numeric, and multiply the random sample by the result
 as.numeric(pull(prob1_df, samp_gt_0)) * (samp = rnorm(10))
-#convert the logical vector to a factor, and multiply the random sample by the result
+#logical vector to a factor, and multiply the random sample by the result
 as.factor(pull(prob1_df, samp_gt_0)) * (samp = rnorm(10))
-#convert the logical vector to a factor and then convert the result to numeric, and multiply the random sample by the result
+#logical vector to a factor then the result to numeric, and multiply the random sample by the result
 as.numeric(as.factor(pull(prob1_df, samp_gt_0))) * (samp = rnorm(10))
 ```
 
@@ -63,7 +63,7 @@ data("penguins", package = "palmerpenguins")
 
 The _penguins_ data set examines `r variable.names(penguins)`. 
 This data set examines `r levels(penguins$species)` speices across three islands: `r levels(penguins$island)`. 
-The mean bill length is `r mean(pull(penguins, bill_length_mm), na.rm = TRUE)`. Values were measured between the years of `r range(pull(penguins, year), na.rm = TRUE)`. 
+The mean bill length is `r mean(pull(penguins, bill_length_mm), na.rm = TRUE)`. Data was collected between the years of (`r range(pull(penguins, year), na.rm = TRUE)`). 
 There are `r nrow(penguins)` rows and `r ncol(penguins)` columns. 
 The mean flipper length is `r mean(pull(penguins, flipper_length_mm), na.rm = TRUE)`. 
 

@@ -4,16 +4,14 @@ author: Karina Myers
 output: github_document
 ---
 
-This is my solution to HW1. 
-
-```{r}
+#### Loading tidyverse
+```{r loading tidyverse}
 library(tidyverse)
 ```
 
 ## Problem 1
 
-Create a data frame with the specified element. 
-
+#### Create a data frame with the specified elements
 ```{r}
 prob1_df =
   tibble(
@@ -24,8 +22,7 @@ prob1_df =
 )
 ```
 
-Take the mean of each variable in my data frame. 
-
+#### Take the Mean
 ```{r}
 mean(pull(prob1_df, samp))
 mean(pull(prob1_df, samp_gt_0))
@@ -35,44 +32,47 @@ mean(pull(prob1_df, factor_vec))
 
 I can take the mean of numbers and logical but not the mean of character or factor. 
 
-Convert to numeric.
-
+#### Convert to Numeric
 ```{r, eval = FALSE} 
 as.numeric(pull(prob1_df, samp_gt_0)) 
 as.numeric(pull(prob1_df, char_vec))
 as.numeric(pull(prob1_df, factor_vec))
 ```
 
-I can take take the mean of logical and factor, but not character. Logical is converted to 0 or 1. Factor is converted to 1, 2, or 3. However, character is not converted to numbers, which  why you cannot take the mean. 
+This shows how R coerces logical, character, and factor into numbers.
+Logical is converted to 0 or 1. Factor is converted to 1, 2, or 3. 
+However, character is not converted to numbers. This partially explains what happened in the step 
+above. Since character could not be coerced to numbers, R could not take the mean. 
 
-Second chunk of code:
-
-```{r, eval = FALSE} 
+#### Second Code Chunk
+```{r } 
+#convert the logical vector to numeric, and multiply the random sample by the result
 as.numeric(pull(prob1_df, samp_gt_0)) * (samp = rnorm(10))
+#convert the logical vector to a factor, and multiply the random sample by the result
 as.factor(pull(prob1_df, samp_gt_0)) * (samp = rnorm(10))
+#convert the logical vector to a factor and then convert the result to numeric, and multiply the random sample by the result
 as.numeric(as.factor(pull(prob1_df, samp_gt_0))) * (samp = rnorm(10))
 ```
 
-
 ## Problem 2 
 
-```{r}
+#### Loading Penguins
+```{r Loading Penguins}
 data("penguins", package = "palmerpenguins")
 ```
 
-The penguins data set examines `r variable.names(penguins)`. 
+The _penguins_ data set examines `r variable.names(penguins)`. 
+This data set examines `r levels(penguins$species)` speices across three islands: `r levels(penguins$island)`. 
+The mean bill length is `r mean(pull(penguins, bill_length_mm), na.rm = TRUE)`. Values were measured between the years of `r range(pull(penguins, year), na.rm = TRUE)`. 
 There are `r nrow(penguins)` rows and `r ncol(penguins)` columns. 
 The mean flipper length is `r mean(pull(penguins, flipper_length_mm), na.rm = TRUE)`. 
 
-Make a scatterplot of flipper length vs bill length. 
-```{r}
-ggplot (data = penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point() + ggtitle("Flipper Length and Bill Length by Species")
+#### Scatterplot
+```{r Scatterplot}
+ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + 
+  geom_point() + 
+  ggtitle("Flipper Length & Bill Length by Species")
 
 ggsave("hw1_scatter_plot.pdf", height = 4, width = 6) 
 ```
-
-
-
-
-
 
